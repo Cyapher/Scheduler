@@ -62,7 +62,8 @@ public class Main {
                     ;
                     System.out.println("Enter the Scheduler's Time Quantum");
                     int timeQuantum = scan.nextInt();
-                    NonPreemptiveRoundRobin nprr = new NonPreemptiveRoundRobin(processes, timeQuantum);
+                    PreemptiveRoundRobin prr = new PreemptiveRoundRobin(processes, timeQuantum);
+                    prr.scheduleRoundRobin();
 
                 default:
                     System.out.println("Do you want to continue (Y/N)?");
