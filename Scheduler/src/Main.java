@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.Scanner;
 
 public class Main {
-    static boolean Preemp = false;
+    static boolean preempt = false;
 
     public static void main(String[] args) throws Exception {
 
@@ -48,54 +48,59 @@ public class Main {
 
             scheduler = scan.next();
 
-            switch (scheduler) {
+            switch (scheduler.toUpperCase()) {
                 case "A":
-                    ;
-
+                    
+                    break;
                 case "B":
-                    ;
-
+                    
+                    break;
                 case "C":
-                    ;
-
+                    
+                    break;
                 case "D":
-                    ;
-                    System.out.println("Enter the Scheduler's Time Quantum");
-                    int timeQuantum = scan.nextInt();
-                    PreemptiveRoundRobin prr = new PreemptiveRoundRobin(processes, timeQuantum);
-                    prr.scheduleRoundRobin();
+                    preempt = checkPreempt();
+                    if(preempt){
+                        //With preemption
+                        System.out.println("Enter the Scheduler's Time Quantum");
+                        int timeQuantum = scan.nextInt();
+                        PreemptiveRoundRobin prr = new PreemptiveRoundRobin(processes, timeQuantum);
+                        prr.scheduleRoundRobin();
+                    } else {
+                        //Without preemption
 
-                default:
-                    System.out.println("Do you want to continue (Y/N)?");
-                    choice = scan.next();
-                    if (choice.equals("N")) {
-                        again = false;
-                        System.out.println("thank you");
                     }
+                    break;
+                default:
+                    
             }
-
+            System.out.println("Do you want to continue (Y/N)?");
+            choice = scan.next();
+            if (choice.toUpperCase().equals("N")) {
+                again = false;
+                System.out.println("thank you");
+            }
         }
 
     }
 
-    private static boolean checkPreemp() { // T = P and F = NP
+    private static boolean checkPreempt() { // T = P and F = NP
         Scanner scan = new Scanner(System.in);
-        System.out.println("Without Preemption or With Preemtion?");
+        System.out.println("Without Preemption or With Preemption?");
         System.out.println("A: Without Preemption \n");
         System.out.println("B: With Preemption \n");
 
         String choice = scan.next();
-
-        if (choice.equals("A")) {
-            Preemp = false;
-        } else if (choice.equals("B")) {
-            Preemp = true;
+        if (choice.toUpperCase().equals("A")) {
+            preempt = false;
+        } else if (choice.toUpperCase().equals("B")) {
+            preempt = true;
         } else {
             System.err.println("Incorrect Choice");
             System.out.println(choice);
         }
-        System.out.println("Preemp: " + Preemp);
-        return Preemp;
+        System.out.println("Preempt: " + preempt);
+        return preempt;
     }
 
 }
