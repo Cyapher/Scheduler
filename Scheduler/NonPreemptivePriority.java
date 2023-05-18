@@ -58,14 +58,14 @@ public class NonPreemptivePriority {
         aveTurnArTime /= outputTable.length;
 
         // Display the output table
-        System.out.println("completion time\twaiting time\tturnaround time");
+        System.out.println("Completion time\tWaiting time\tTurnaround time");
         for (int i = 0; i < outputTable.length; i++) {
             System.out.print("P"+(i+1)+": " + outputTable[i][0] + "\t\tP"+(i+1)+": " + outputTable[i][1] + "\t\tP"+(i+1)+": " + outputTable[i][2]);
             System.out.println();
         }
         // Display averages
-        System.out.println("Average waiting time: " + aveWaitTime);
-        System.out.println("Average turnaround time: " + aveTurnArTime);
+        System.out.println("Average waiting time: " + String.format("%.2f", aveWaitTime));
+        System.out.println("Average turnaround time: " + String.format("%.2f", aveTurnArTime) );
     }
 
     // Function to sort 2d array by column

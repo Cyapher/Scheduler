@@ -21,14 +21,14 @@ public class Main {
             int[] arrTime = new int[input];
             System.out.println("\nEnter individual arrival time: ");
             for (int i = 0; i < input; i++) {
-                System.out.println("AT" + (i + 1) + ": ");
+                System.out.print("AT" + (i + 1) + ": ");
                 arrTime[i] = scan.nextInt();
             }
 
             int[] burstTime = new int[input];
             System.out.println("\nEnter individual burst time: ");
             for (int i = 0; i < input; i++) {
-                System.out.println("BT" + (i + 1) + ": ");
+                System.out.print("BT" + (i + 1) + ": ");
                 burstTime[i] = scan.nextInt();
             }
 
@@ -50,13 +50,46 @@ public class Main {
 
             switch (scheduler.toUpperCase()) {
                 case "A":
-                    
+                    preempt = checkPreempt();
+                    if(preempt){
+                        //With preemption
+
+                    } else {
+                        //Without preemption
+
+                    }
                     break;
                 case "B":
-                    
+                    preempt = checkPreempt();
+                    if(preempt){
+                        //With preemption
+
+                    } else {
+                        //Without preemption
+
+                    }
                     break;
                 case "C":
-                    
+                    preempt = checkPreempt();
+                    if(preempt){
+                        //With preemption
+
+                    } else {
+                        //Without preemption
+                        int[][] priorityTable = new int[input][2];
+                        //Priority Table
+                            //first column : procedure number
+                            //second column : priority value
+                        
+                        System.out.println("Enter individual priority number:"); 
+                        for(int i = 0; i<priorityTable.length; i++){
+                            System.out.print("Prio" + (i+1) +": ");  
+                            priorityTable[i][0] = i+1;
+                            priorityTable[i][1] = scan.nextInt(); 
+                        }
+                        NonPreemptivePriority npp = new NonPreemptivePriority(processes, priorityTable);
+                        npp.schedulePriority();
+                    }
                     break;
                 case "D":
                     preempt = checkPreempt();
