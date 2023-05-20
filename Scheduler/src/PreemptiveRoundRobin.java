@@ -47,14 +47,14 @@ public class PreemptiveRoundRobin {
 
         int[] waitingTime = new int[processes.size()];
         int[] turnaroundTime = new int[processes.size()];
-        int[] remainingTime = new int[processes.size()];
+        int[] remainingTime = new int[processes.size()]; //remaining time per process
         boolean[] processCompleted = new boolean[processes.size()];
 
         for (int i = 0; i < processes.size(); i++) {
             remainingTime[i] = processes.get(i).getBurstTime();
             waitingTime[i] = 0;
 
-            System.out.println("Remaining Time: " + remainingTime[i]);
+            System.out.println("Remaining Time[" + processes.get(i).getProcess() + "]: " + remainingTime[i]);
         }
 
         // Queue<Triple<String, Integer, Integer>> queue = processes;
@@ -64,21 +64,26 @@ public class PreemptiveRoundRobin {
         int processNum = 0;
         int time = 0;
 
-        while (remainingProcesses > 0) {
+        while (remainingProcesses > 0) { //while there is still processes available
 
             if (remainingTime[processNum] > timeQuantum) {
                 remainingTime[processNum] = remainingTime[processNum] - timeQuantum;
                 System.out.println(" | P[" + (processes.get(processNum).getProcess()) + "] | ");
                 time += timeQuantum;
-                System.out.println("T"+time);
+                System.out.println("Time: "+time);
 
             } else if (remainingTime[processNum] <= timeQuantum && remainingTime[processNum] > 0) {
                 time += remainingTime[processNum];
                 remainingTime[processNum] = remainingTime[processNum] - remainingTime[processNum];
                 System.out.println(" | P[" + (processes.get(processNum).getProcess()) + "] | ");
                 remainingProcesses--;
-                turnaroundTime[processNum] = time - processes.get(processNum).getArrivalTime();
-                waitingTime[processNum] = time - processes.get(processNum).getBurstTime();
+                
+                //Computation of TAT
+                //Turn-Around-Time = Completion time - Arrival Time
+                turnaroundTime[processNum] = (time + 1) - processes.get(processNum).getArrivalTime();
+
+                //Computation of WT
+                waitingTime[processNum] = turnaroundTime[processNum] - processes.get(processNum).getBurstTime();
                 System.out.println("T"+time);
             }
 
