@@ -7,6 +7,7 @@ public class PreemptiveRoundRobin {
     List<Triple<String, Integer, Integer>> processes;
     int timeQuantum;
 
+    //Constructor
     public PreemptiveRoundRobin(List<Triple<String, Integer, Integer>> processes, int timeQuantum) {
         this.processes = processes;
         this.timeQuantum = timeQuantum;

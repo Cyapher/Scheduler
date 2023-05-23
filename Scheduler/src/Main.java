@@ -45,7 +45,7 @@ public class Main {
             System.out.println("B: Shortest-Job-First \n");
             System.out.println("C: Priority Scheduling \n");
             System.out.println("D: Round Robin \n");
-
+            System.out.println("Input(A, B, C, D): ");
             scheduler = scan.next();
 
             switch (scheduler.toUpperCase()) {
@@ -91,27 +91,21 @@ public class Main {
                         npp.schedulePriority();
                     }
                     break;
-                case "D":
-                    preempt = checkPreempt();
-                    if(preempt){
-                        //With preemption
+                case "D": //Round Robin
                         System.out.println("Enter the Scheduler's Time Quantum");
                         int timeQuantum = scan.nextInt();
                         PreemptiveRoundRobin prr = new PreemptiveRoundRobin(processes, timeQuantum);
                         prr.scheduleRoundRobin();
-                    } else {
-                        //Without preemption
 
-                    }
                     break;
-                default:
+                default: System.out.println("Incorrect Input, try again!");
                     
             }
             System.out.println("Do you want to continue (Y/N)?");
             choice = scan.next();
             if (choice.toUpperCase().equals("N")) {
                 again = false;
-                System.out.println("thank you");
+                System.out.println("Thank You for Using CPU Scheduler");
             }
         }
 
