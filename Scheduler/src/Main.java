@@ -75,7 +75,7 @@ public class Main {
                     preempt = checkPreempt();
                     if(preempt){
                         //With preemption
-
+                        new PriorityPreemptive(processes).run();
                     } else {
                         //Without preemption
                         int[][] priorityTable = new int[input][2];
