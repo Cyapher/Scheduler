@@ -63,6 +63,8 @@ public class Main {
                     preempt = checkPreempt();
                     if(preempt){
                         //With preemption
+                        SJFPreemptive sjfp = new SJFPreemptive(processes,input,arrTime,burstTime);
+                        sjfp.run();
 
                     } else {
                         //Without preemption
