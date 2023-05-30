@@ -44,11 +44,11 @@ public class PreemptiveRoundRobin {
 
         // Remaining Processes
         int remainingProcesses = processes.size();
-        
 
         int[] waitingTime = new int[processes.size()];
         int[] turnaroundTime = new int[processes.size()];
         int[] remainingTime = new int[processes.size()]; //remaining time per process
+        int[] finishTime = new int[processes.size()];
         boolean[] processCompleted = new boolean[processes.size()];
 
         for (int i = 0; i < processes.size(); i++) {
@@ -79,9 +79,11 @@ public class PreemptiveRoundRobin {
                 System.out.println(" | P[" + (processes.get(processNum).getProcess()) + "] | ");
                 remainingProcesses--;
                 
+                finishTime[processNum] = time;
+
                 //Computation of TAT
                 //Turn-Around-Time = Completion time - Arrival Time
-                turnaroundTime[processNum] = (time + 1) - processes.get(processNum).getArrivalTime();
+                turnaroundTime[processNum] = time - processes.get(processNum).getArrivalTime();
 
                 //Computation of WT
                 waitingTime[processNum] = turnaroundTime[processNum] - processes.get(processNum).getBurstTime();
@@ -108,9 +110,9 @@ public class PreemptiveRoundRobin {
 
          //Print Process Computations
          System.out.println("Processes Computations");
-         System.out.println("\nProcess\tArrival Time\tBurst Time\tWaiting Time\tTurn-Around Time");
+         System.out.println("\nProcess\tArrival Time\tBurst Time\tFinish Time\tTurn-Around Time\tWaiting Time");
          for(int i = 0; i < processes.size(); i++){
-             System.out.println(processes.get(i).getProcess() + "\t" + processes.get(i).getArrivalTime() + "\t\t" + processes.get(i).getBurstTime() + "\t\t" + waitingTime[i] + "\t\t" + turnaroundTime[i]);
+             System.out.println(processes.get(i).getProcess() + "\t" + processes.get(i).getArrivalTime() + "\t\t" + processes.get(i).getBurstTime() + "\t\t" + finishTime[i] + "\t\t" + turnaroundTime[i]+ "\t\t\t" + waitingTime[i] );
          }
 
         System.out.printf("\nAverage Waiting Time: %.2f", averageWaitingTime);
