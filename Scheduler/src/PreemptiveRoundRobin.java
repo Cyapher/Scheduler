@@ -60,12 +60,12 @@ public class PreemptiveRoundRobin {
 
         // Queue<Triple<String, Integer, Integer>> queue = processes;
         // int processIdx = 0;
-        System.out.println("\nProcesses Order: \nT0");
+        System.out.println("\nProcesses Order: \nTime: 0");
 
         int processNum = 0;
         int time = 0;
 
-        while (remainingProcesses > 0) { //while there is still processes available
+        while (remainingProcesses != 0) { //while there is still processes available
 
             if (remainingTime[processNum] > timeQuantum) {
                 remainingTime[processNum] = remainingTime[processNum] - timeQuantum;
