@@ -78,6 +78,8 @@ public class PriorityPreemptive {
         } while (!queue.isEmpty() || !processList.isEmpty());
         
         processList = new ArrayList<>(this.list); // copy list again
+        Collections.sort(processList, (PriorityProcess p1, PriorityProcess p2) -> p1.name.compareToIgnoreCase(p2.name)); // sort by name
+        
         double totalWait = 0, totalTurn = 0, n = processList.size();
         System.out.println("Priority (Preemptive):\nName:\tArrival Time\tBurst Time\tCompletion Time\tWaiting Time:\tTurnaround Time:");
         for (PriorityProcess p : processList) {
