@@ -78,12 +78,15 @@ public class PriorityPreemptive {
         } while (!queue.isEmpty() || !processList.isEmpty());
         
         processList = new ArrayList<>(this.list); // copy list again
+        Collections.sort(processList, (PriorityProcess p1, PriorityProcess p2) -> p1.name.compareToIgnoreCase(p2.name)); // sort by name
+        
         double totalWait = 0, totalTurn = 0, n = processList.size();
-        System.out.println("Priority (Preemptive):\nName:\tWaiting Time:\tTurnaround Time:");
+        System.out.println("Priority (Preemptive):\nName:\tArrival Time\tBurst Time\tCompletion Time\tWaiting Time:\tTurnaround Time:");
         for (PriorityProcess p : processList) {
             totalWait += p.waitingTime;
             totalTurn += p.turnaroundTime;
-            System.out.println(p.name + "\t" + p.waitingTime + "\t\t" + p.turnaroundTime);
+            System.out.printf("%s\t%s\t\t%s\t\t%s\t\t%s\t\t%s\n",
+                p.name, p.arrival, p.burst, p.turnaroundTime+p.arrival, p.waitingTime, p.turnaroundTime);
         }
         System.out.println("Average Waiting Time: " + totalWait/n);
         System.out.println("Average Turnaround Time: " + totalTurn/n);

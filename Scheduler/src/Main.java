@@ -52,13 +52,15 @@ public class Main {
                 case "A":
                     preempt = checkPreempt();
                     if(preempt){
-                        //With preemption
-
+                            FirstComeFirstServe fcfs = new FirstComeFirstServe(processes, arrTime, burstTime);
+                            fcfs.scheduleFCFS();
+                            break;
                     } else {
-                        //Without preemption
+                        FirstComeFirstServe fcfs = new FirstComeFirstServe(processes, arrTime, burstTime);
+                        fcfs.scheduleFCFS();
+                        break;
 
                     }
-                    break;
                 case "B":
                     preempt = checkPreempt();
                     if(preempt){
@@ -68,7 +70,8 @@ public class Main {
 
                     } else {
                         //Without preemption
-
+                        NonPreemptiveSJF nsjf = new NonPreemptiveSJF(processes,input,arrTime,burstTime);
+                        nsjf.run();
                     }
                     break;
                 case "C":
