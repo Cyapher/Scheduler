@@ -62,11 +62,11 @@ public class NonPreemptiveSJF {
         double averageWaitingTime = totalWaitingTime / input;
         double averageTurnaroundTime = totalTurnaroundTime / input;
 
-        System.out.println("Process\tArrival Time\tBurst Time\tCompletion Time\tWaiting Time\tTurnaround Time");
+        System.out.println("\nProcess\t\tArrival Time\tBurst Time\tFinish Time\tWaiting Time\tTurn-Around Time");
         for (int i = 0; i < input; i++) {
             Triple<String, Integer, Integer> process = processes.get(i);
-            System.out.println(process.getProcess() + "\t\t" + arrTime.get(i) + "\t\t\t" + burstTime.get(i) + "\t\t\t" +
-                               completionTime[i] + "\t\t\t\t" + waitingTime[i] + "\t\t\t\t" + turnaroundTime[i]);
+            System.out.println(process.getProcess() + "\t\t" + arrTime.get(i) + "\t\t" + burstTime.get(i) + "\t\t" +
+                               completionTime[i] + "\t\t" + waitingTime[i] + "\t\t" + turnaroundTime[i]);
         }
 
         System.out.printf("\nAverage Waiting Time: %.2f\n", averageWaitingTime);

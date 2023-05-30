@@ -82,9 +82,9 @@ public class SJFPreemptive {
         double averageWaitingTime = totalWaitingTime / input;
         double averageTurnaroundTime = totalTurnaroundTime / input;
 
-        System.out.println("\nProcess\tArrival Time\tBurst Time\tCompletion Time\tWaiting Time\tTurnaround Time");
+        System.out.println("\nProcess\t\tArrival Time\t\tBurst Time\tCompletion Time\t\tWaiting Time\tTurnaround Time");
         for (int i = 0; i < input; i++) {
-            System.out.println("P" + (i + 1) + "\t\t" + arrTime[i] + "\t\t\t\t" + burstTime[i] + "\t\t\t" + completionTime[i] + "\t\t\t\t" + waitingTime[i] + "\t\t\t\t" + turnaroundTime[i]);
+            System.out.println("P" + (i + 1) + "\t\t" + arrTime[i] + "\t\t\t" + burstTime[i] + "\t\t" + completionTime[i] + "\t\t\t" + waitingTime[i] + "\t\t" + turnaroundTime[i]);
         }
 
         System.out.printf("\nAverage Waiting Time: %.2f", averageWaitingTime);
